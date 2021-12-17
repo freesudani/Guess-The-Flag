@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import FinalScore from "./components/finalscore/FinalScore";
 import Layout from "./components/layout/Layout";
 
 function App() {
-  return <Layout></Layout>;
+  const [showFinalScore, setShowFinalScore] = useState(false);
+
+  const showScoreHandler = () => {
+    setShowFinalScore(true);
+  };
+
+  const hideScoreHandler = () => {
+    setShowFinalScore(false);
+  };
+
+  return (
+    <>
+      {showFinalScore && <FinalScore onClose={hideScoreHandler} />}
+      <Layout />
+    </>
+  );
 }
 
 export default App;
