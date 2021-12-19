@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import FinalScore from "./components/finalscore/FinalScore";
 import Layout from "./components/layout/Layout";
 import Question from "./components/quiz/Question";
+import About from "./components/about/About";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 const shuffle = (array) => {
   let currentIndex = array.length,
@@ -21,6 +23,7 @@ const shuffle = (array) => {
 };
 
 const App = () => {
+  const location = useLocation();
   const [showFinalScore, setShowFinalScore] = useState(false);
   const [countries, setCountries] = useState({
     image: "",
@@ -76,7 +79,10 @@ const App = () => {
     <>
       {showFinalScore && <FinalScore onClose={hideScoreHandler} />}
       <Layout>
-        <Question countries={countries} />
+        <Routes location={location} key={location.key}>
+          <Route exact path="/" element={<About />} />
+          <Route path="/quiz" element={<Question countries={countries} />} />
+        </Routes>
       </Layout>
     </>
   );

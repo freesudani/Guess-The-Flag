@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,10 +12,10 @@ const Navbar = () => {
       <div>
         <ul className={classes.list}>
           <li>
-            <a>Start Quiz</a>
+            <Link to="/quiz">Start Quiz</Link>
           </li>
           <li>
-            <a>About</a>
+            <Link to="/">About</Link>
           </li>
         </ul>
       </div>

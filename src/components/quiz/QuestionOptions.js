@@ -1,23 +1,11 @@
 import React from "react";
 import classes from "./QuestionOptions.module.css";
 
-const QuestionOptions = ({ countries }) => {
+const QuestionOptions = ({ country }) => {
   return (
-    <>
-      <div className={classes.move}>
-        {countries.options.map((country, index) => {
-          return (
-            <button className={classes.option} key={index}>
-              {country}
-            </button>
-          );
-        })}
-      </div>
-      <div className={classes.buttoncontainer}>
-        <button className={classes.btn}>Exit</button>
-        <button className={classes.btn}>Show Score</button>
-      </div>
-    </>
+    <div className={classes.move}>
+      <button className={classes.btn}>{country}</button>
+    </div>
   );
 };
 
