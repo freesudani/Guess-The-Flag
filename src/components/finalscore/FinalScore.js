@@ -3,14 +3,15 @@ import Modal from "../UI/Modal";
 import classes from "./FinalScore.module.css";
 
 const FinalScore = (props) => {
+  console.log(props.score);
   return (
     <Modal>
       <div className={classes.total}>
         <span>Total Correct Answers</span>
-        <span>3/5</span>
+        <span>{Number(props.score)}/5</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes["button--alt"]} onClick={props.onClose}>
+        <button className={classes["button--alt"]} onClick={props.onHide}>
           Close
         </button>
       </div>

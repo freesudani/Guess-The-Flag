@@ -29,3 +29,35 @@
   transform: translateY(3px);
   box-shadow: 0 1px #000;
 }
+
+.correctChoice {
+  width: 18rem;
+  height: 2rem;
+  margin-top: 0.5rem;
+  border-radius: 05%;
+  background-color: green;
+  border: 1px solid #555;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.correctChoice:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px #000;
+}
+
+.uncorrectChoice {
+  width: 18rem;
+  height: 2rem;
+  margin-top: 0.5rem;
+  border-radius: 05%;
+  background-color: red;
+  border: 1px solid #555;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.uncorrectChoice:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px #000;
+}
