@@ -3,20 +3,17 @@ import classes from "./Question.module.css";
 import QuestionOptions from "./QuestionOptions";
 import { Link } from "react-router-dom";
 import FinalScore from "../finalscore/FinalScore";
+import transitionVariants from "../UI/transitionVariants";
+import { motion } from "framer-motion";
 
 const Question = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [haveAnswered, setHaveAnswered] = useState(false);
   const [showFinalScore, setShowFinalScore] = useState(false);
-  const [score, setScore] = useState(0);
 
-  const AnsweredQuestion = (IsitCorrect) => {
+  const AnsweredQuestion = () => {
     setHaveAnswered(true);
-
-    if (IsitCorrect) {
-      setScore(props.score + 1);
-    }
 
     setTimeout(() => {
       if (currentQuestion < 4) {
@@ -39,13 +36,19 @@ const Question = (props) => {
     setShowFinalScore(false);
     if (currentQuestion >= 4) {
       setCurrentQuestion(0);
-      setScore(0);
+      props.onFetch();
     }
   };
 
   if (!showFinalScore) {
     return (
-      <div className={classes.quiz}>
+      <motion.div
+        className={classes.quiz}
+        variants={transitionVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         <div className={classes.questionflag}>
           <img src={props.countries[currentQuestion].image} alt="country" />
         </div>
@@ -61,7 +64,8 @@ const Question = (props) => {
                 country={country[0]}
                 haveAnswered={haveAnswered}
                 parentFunction={AnsweredQuestion}
-                setScore={setScore}
+                setScore={props.setScore}
+                score={props.score}
               />
             );
           })}
@@ -75,11 +79,11 @@ const Question = (props) => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
   if (showFinalScore) {
-    return <FinalScore onHide={hideScoreHandler} score={score} />;
+    return <FinalScore onHide={hideScoreHandler} score={props.score} />;
   }
 };
 

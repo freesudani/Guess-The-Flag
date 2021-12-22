@@ -7,12 +7,14 @@ const QuestionOptions = ({
   parentFunction,
   correctness,
   setScore,
+  score,
 }) => {
   const [myColor, setMyColor] = useState(classes.btn);
 
   const changeColor = () => {
     if (correctness) {
       setMyColor(classes.correctChoice);
+      setScore(score + 1);
     } else {
       setMyColor(classes.uncorrectChoice);
     }
@@ -25,7 +27,7 @@ const QuestionOptions = ({
   }, [haveAnswered]);
 
   return (
-    <div>
+    <div className={classes.option}>
       <button
         className={myColor}
         onClick={() => {

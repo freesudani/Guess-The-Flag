@@ -1,10 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./About.module.css";
+import transitionVariants from "../UI/transitionVariants";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div className={classes.AboutBox}>
+    <motion.div
+      className={classes.AboutBox}
+      variants={transitionVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <h1>World Flag Quiz Test</h1>
       <h2>Please Read Below Instructions</h2>
       <div>
@@ -15,7 +23,7 @@ const About = () => {
       <Link to="/quiz">
         <button className={classes.btn}>Start Quiz</button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
