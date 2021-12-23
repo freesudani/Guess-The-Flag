@@ -4,7 +4,7 @@
   align-items: center;
 }
 .questionflag {
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 
 .questionflag img {
@@ -19,7 +19,7 @@
   grid-template-columns: repeat(1, 1fr);
   width: 30rem;
   margin-top: 0.1rem;
-  margin-right: 10rem;
+  margin-right: 2rem;
   padding: 1.5rem;
   background: #fff;
   color: black;

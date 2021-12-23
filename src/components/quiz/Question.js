@@ -3,7 +3,7 @@ import classes from "./Question.module.css";
 import QuestionOptions from "./QuestionOptions";
 import { Link } from "react-router-dom";
 import FinalScore from "../finalscore/FinalScore";
-import transitionVariants from "../UI/transitionVariants";
+import transitionVariants from "../UI/TransitionVariants";
 import { motion } from "framer-motion";
 
 const Question = (props) => {

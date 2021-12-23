@@ -1,12 +1,10 @@
 .AboutBox {
   width: 30rem;
   height: 25rem;
-  margin: 10rem auto auto auto;
+  margin: 1rem auto auto auto;
   background-color: #fff;
   color: #000;
   border-radius: 5px;
-  margin-top: 1rem;
-  margin-right: 32rem;
   padding: 1rem;
   text-align: center;
 }

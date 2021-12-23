@@ -9,7 +9,7 @@ const transitionVariants = {
     x: "0",
     transition: {
       type: "spring",
-      delay: 0.5,
+      delay: 0.8,
     },
   },
 };

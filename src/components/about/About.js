@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./About.module.css";
-import transitionVariants from "../UI/transitionVariants";
+import transitionVariants from "../UI/TransitionVariants";
 import { motion } from "framer-motion";
 
 const About = () => {

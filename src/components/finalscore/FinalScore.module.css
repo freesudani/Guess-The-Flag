@@ -17,22 +17,17 @@
 }
 
 .actions button {
-  font: inherit;
-  cursor: pointer;
+  width: 8rem;
+  height: 3rem;
+  margin-top: 1rem;
+  border-radius: 10%;
   background-color: transparent;
-  border: 1px solid #8a2b06;
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  margin-left: 1rem;
+  border: 2px solid #555;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-.actions button:hover,
 .actions button:active {
-  background-color: #5a1a01;
-  border-color: #5a1a01;
-  color: white;
-}
-
-.actions .button--alt {
-  color: #8a2b06;
+  transform: translateY(3px);
+  box-shadow: 0 1px #000;
 }

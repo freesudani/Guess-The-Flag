@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import FinalScore from "./components/finalscore/FinalScore";
 import Layout from "./components/layout/Layout";
 import Question from "./components/quiz/Question";
 import About from "./components/about/About";
