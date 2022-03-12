@@ -1,16 +1,74 @@
 import React, { useState } from "react";
-import classes from "./Question.module.css";
 import QuestionOptions from "./QuestionOptions";
-import { Link } from "react-router-dom";
 import FinalScore from "../finalscore/FinalScore";
 import transitionVariants from "../UI/TransitionVariant";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+
+import Box from "@mui/material/Box";
+import { Button, Typography } from "@mui/material";
+
+const useStyles = makeStyles({
+  quiz: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  questionflag: {
+    marginLeft: "3rem",
+    "& img": {
+      marginTop: "1rem",
+      width: "25rem",
+      height: "18rem",
+    },
+  },
+
+  options: {
+    width: "30rem",
+    marginTop: "0.1rem",
+    marginRight: "2rem",
+    padding: "1.5rem",
+    background: "#fff",
+    color: "black",
+    border: "5px solid #000",
+    borderRadius: "10px",
+  },
+
+  heading: {
+    width: "100%",
+    textAlign: "center",
+  },
+
+  buttoncontainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    marginTop: "1rem",
+  },
+
+  btn: {
+    width: "8rem",
+    height: "3rem",
+    marginTop: "1rem",
+    borderRadius: "10%",
+    border: "2px solid #555",
+    cursor: "pointer",
+    transition: "0.5s",
+    "&:active": {
+      transform: "translateY(3px)",
+      boxShadow: "0 1px #000",
+    },
+  },
+});
 
 const Question = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [haveAnswered, setHaveAnswered] = useState(false);
   const [showFinalScore, setShowFinalScore] = useState(false);
+  const navigate = useNavigate();
+  const classes = useStyles();
 
   const AnsweredQuestion = () => {
     setHaveAnswered(true);
@@ -42,19 +100,22 @@ const Question = (props) => {
 
   if (!showFinalScore) {
     return (
-      <motion.div
+      <Box
+        component={motion.div}
         className={classes.quiz}
         variants={transitionVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
       >
-        <div className={classes.questionflag}>
+        <Box className={classes.questionflag}>
           <img src={props.countries[currentQuestion].image} alt="country" />
-        </div>
+        </Box>
 
-        <div className={classes.options}>
-          <h2 className={classes.heading}>Pick A Country</h2>
+        <Box className={classes.options}>
+          <Typography variant="h4" className={classes.heading}>
+            Pick A Country
+          </Typography>
 
           {props.countries[currentQuestion].options.map((country, index) => {
             return (
@@ -70,16 +131,26 @@ const Question = (props) => {
             );
           })}
 
-          <div className={classes.buttoncontainer}>
-            <Link to="/">
-              <button className={classes.btn}>Exit</button>
-            </Link>
-            <button className={classes.btn} onClick={showScoreHandler}>
+          <Box className={classes.buttoncontainer}>
+            <Button
+              size="large"
+              variant="contained"
+              className={classes.btn}
+              onClick={() => navigate("/")}
+            >
+              Exit
+            </Button>
+            <Button
+              size="large"
+              variant="contained"
+              className={classes.btn}
+              onClick={showScoreHandler}
+            >
               Show Score
-            </button>
-          </div>
-        </div>
-      </motion.div>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
     );
   }
   if (showFinalScore) {

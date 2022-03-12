@@ -1,11 +1,47 @@
 import React from "react";
 import Modal from "../UI/Modal";
-import classes from "./FinalScore.module.css";
 import { motion } from "framer-motion";
 import { Fireworks } from "fireworks/lib/react";
 import finalScoreVariant from "../UI/FinalScoreVariant";
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
+import { Button, Typography } from "@mui/material";
+
+const useStyles = makeStyles({
+  total: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: "bold",
+    fontSize: "1.5rem",
+    "& span": {
+      marginBottom: "3rem",
+      textTransform: "uppercase",
+    },
+  },
+
+  actions: {
+    textAlign: "center",
+
+    "& button": {
+      cursor: "pointer",
+      transition: "0.5s",
+      "&:active": {
+        transform: "translateY(3px)",
+        boxShadow: "0 1px #000",
+      },
+    },
+  },
+
+  box: {
+    height: "100vh",
+  },
+});
 
 const FinalScore = (props) => {
+  const classes = useStyles();
+
   let fxProps = {
     count: 2,
     interval: 1500,
@@ -21,40 +57,51 @@ const FinalScore = (props) => {
 
   if (props.score > 3) {
     content = (
-      <div>
-        <Fireworks {...fxProps} /> <p>Congrats</p>
-      </div>
+      <Box>
+        <Fireworks {...fxProps} />
+        <Typography variant="h4" gutterBottom>
+          Congrats
+        </Typography>
+      </Box>
     );
   }
   if (props.score <= 3) {
     content = (
-      <div>
-        <p>Better Luck Next Time...</p>
-      </div>
+      <Box>
+        <Typography variant="h4" gutterBottom>
+          Better Luck Next Time...
+        </Typography>
+      </Box>
     );
   }
 
   console.log(props.score);
   return (
-    <motion.div
+    <Box
+      className={classes.box}
+      component={motion.div}
       variants={finalScoreVariant}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
       <Modal>
-        <div className={classes.total}>
-          <span>Total Correct Answers</span>
-          <span>{props.score}/5</span>
+        <Box className={classes.total}>
+          <Typography variant="h3" gutterBottom>
+            Total Correct Answers
+          </Typography>
+          <Typography variant="h3" gutterBottom>
+            {props.score}/5
+          </Typography>
           {content}
-        </div>
-        <div className={classes.actions}>
-          <button className={classes["button--alt"]} onClick={props.onHide}>
+        </Box>
+        <Box className={classes.actions}>
+          <Button size="large" variant="contained" onClick={props.onHide}>
             Close
-          </button>
-        </div>
+          </Button>
+        </Box>
       </Modal>
-    </motion.div>
+    </Box>
   );
 };
 

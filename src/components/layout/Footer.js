@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     width: "100%",
     bottom: "0",
     left: "0",
+    position: "fixed",
     height: "5rem",
     backgroundColor: "#8a2b06",
     color: "white",

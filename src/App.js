@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Layout from "./components/layout/Layout";
 import Question from "./components/quiz/Question";
 import About from "./components/about/About";
@@ -27,7 +27,7 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [score, setScore] = useState(0);
 
-  const fetchCountries = async () => {
+  const fetchCountries = useCallback(async () => {
     setScore(0);
     let Random1 = Math.floor(Math.random() * 254);
     let Random2 = Math.floor(Math.random() * 254);
@@ -119,15 +119,14 @@ const App = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [location]);
 
   useEffect(() => {
     if (countries === []) {
       return;
     }
-
     fetchCountries();
-  }, []);
+  }, [fetchCountries]);
 
   console.log(countries);
 
