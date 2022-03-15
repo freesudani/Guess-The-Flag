@@ -1,12 +1,11 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   footer: {
     width: "100%",
     bottom: "0",
-    left: "0",
     position: "fixed",
     height: "5rem",
     backgroundColor: "#8a2b06",
@@ -22,7 +21,11 @@ const useStyles = makeStyles({
 const Footer = () => {
   const classes = useStyles();
   return (
-    <Box className={classes.footer}>all Rights Reserved 2022 for D-Coding</Box>
+    <Box className={classes.footer}>
+      <Typography variant="h6" align="center" gutterBottom>
+        all Rights Reserved 2022 for D-Coding
+      </Typography>
+    </Box>
   );
 };
 

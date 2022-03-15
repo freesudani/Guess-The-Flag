@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Modal from "../UI/Modal";
-import { motion } from "framer-motion";
-import { Fireworks } from "fireworks/lib/react";
-import finalScoreVariant from "../UI/FinalScoreVariant";
+import { Button, Typography, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
-import { Button, Typography } from "@mui/material";
+import { QuestionsContext } from "../../store/questions-context";
+import { CountriesContext } from "../../store/countries-context";
+import { Fireworks } from "fireworks/lib/react";
+import transitionVariants from "../UI/TransitionVariant";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles({
   total: {
+    padding: "2rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -23,10 +25,11 @@ const useStyles = makeStyles({
 
   actions: {
     textAlign: "center",
-
     "& button": {
       cursor: "pointer",
+      border: "2px solid #555",
       transition: "0.5s",
+      marginBottom: "1rem",
       "&:active": {
         transform: "translateY(3px)",
         boxShadow: "0 1px #000",
@@ -34,13 +37,15 @@ const useStyles = makeStyles({
     },
   },
 
-  box: {
-    height: "100vh",
+  betterluck: {
+    textAlign: "center",
   },
 });
 
-const FinalScore = (props) => {
+const FinalScore = () => {
   const classes = useStyles();
+  const ctxQuestions = useContext(QuestionsContext);
+  const ctxCountries = useContext(CountriesContext);
 
   let fxProps = {
     count: 2,
@@ -55,7 +60,7 @@ const FinalScore = (props) => {
 
   let content;
 
-  if (props.score > 3) {
+  if (ctxCountries.score > 3) {
     content = (
       <Box>
         <Fireworks {...fxProps} />
@@ -65,9 +70,9 @@ const FinalScore = (props) => {
       </Box>
     );
   }
-  if (props.score <= 3) {
+  if (ctxCountries.score <= 3) {
     content = (
-      <Box>
+      <Box className={classes.betterluck}>
         <Typography variant="h4" gutterBottom>
           Better Luck Next Time...
         </Typography>
@@ -75,28 +80,35 @@ const FinalScore = (props) => {
     );
   }
 
-  console.log(props.score);
+  const hideScoreHandler = () => {
+    ctxQuestions.setOpen(false);
+    if (ctxQuestions.currentQuestion >= 4) {
+      ctxQuestions.setCurrentQuestion(0);
+      ctxQuestions.handleClose();
+      ctxCountries.fetchCountries();
+    }
+  };
+
   return (
     <Box
-      className={classes.box}
       component={motion.div}
-      variants={finalScoreVariant}
+      variants={transitionVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
       <Modal>
         <Box className={classes.total}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Total Correct Answers
           </Typography>
-          <Typography variant="h3" gutterBottom>
-            {props.score}/5
+          <Typography variant="h5" gutterBottom>
+            {ctxCountries.score}/5
           </Typography>
           {content}
         </Box>
         <Box className={classes.actions}>
-          <Button size="large" variant="contained" onClick={props.onHide}>
+          <Button size="large" variant="contained" onClick={hideScoreHandler}>
             Close
           </Button>
         </Box>

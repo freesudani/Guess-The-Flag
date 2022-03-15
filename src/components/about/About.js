@@ -1,22 +1,36 @@
 import React from "react";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles/makeStyles";
 import transitionVariants from "../UI/TransitionVariant";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-  aboutBox: {
+  about: {
     width: "30rem",
     height: "21.9rem",
     padding: "0.5rem",
-    marginTop: "0.1rem",
-    marginLeft: "24rem",
+    margin: "auto",
+    borderRadius: "10px",
+  },
+  startbt: {
+    margin: "auto",
+    "& button": {
+      cursor: "pointer",
+      border: "2px solid #555",
+      transition: "0.5s",
+      "&:active": {
+        transform: "translateY(3px)",
+        boxShadow: "0 1px #000",
+      },
+    },
   },
 });
 
@@ -27,11 +41,10 @@ const About = () => {
   return (
     <Card
       component={motion.div}
-      className={classes.aboutBox}
+      className={classes.about}
       variants={transitionVariants}
       initial="hidden"
       animate="visible"
-      exit="exit"
     >
       <CardContent>
         <Typography variant="h4" align="center" gutterBottom>
@@ -59,14 +72,15 @@ const About = () => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button
-          size="large"
-          variant="contained"
-          style={{ marginLeft: "11rem", border: "2px solid #555" }}
-          onClick={() => navigate("/quiz")}
-        >
-          Start
-        </Button>
+        <Box className={classes.startbt}>
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => navigate("/quiz")}
+          >
+            Start
+          </Button>
+        </Box>
       </CardActions>
     </Card>
   );

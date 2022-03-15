@@ -1,19 +1,11 @@
 import React from "react";
-
-import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
-import { useNavigate } from "react-router-dom";
-
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
+import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
+import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
 
 const useStyles = makeStyles({
   navbar: {
-    top: "0",
-    left: "0",
-    width: "100%",
     height: "6rem",
     backgroundColor: "#8a2b06",
     color: "white",
@@ -26,16 +18,14 @@ const useStyles = makeStyles({
 
   logo: {
     height: "5rem",
-    paddingLeft: "8rem",
+    paddingLeft: "150%",
   },
 
-  button: {
-    width: "14rem",
+  navbarbt: {
     height: "100%",
     display: "flex",
     alignItems: "center",
-
-    paddingRight: "7rem",
+    paddingRight: "8%",
   },
 });
 
@@ -44,20 +34,18 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar className={classes.navbar}>
-          <Box>
-            <img src={LogoImage} className={classes.logo} alt="" />
-          </Box>
-          <Box className={classes.button}>
-            <Button color="inherit" size="large" onClick={() => navigate("/")}>
-              Start Quiz
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static">
+      <Toolbar className={classes.navbar}>
+        <Box>
+          <img src={LogoImage} className={classes.logo} alt="logo" />
+        </Box>
+        <Box className={classes.navbarbt}>
+          <Button color="inherit" size="large" onClick={() => navigate("/")}>
+            Start Quiz
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

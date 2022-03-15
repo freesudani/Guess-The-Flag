@@ -1,93 +1,108 @@
+import React, { useEffect, useState, useContext } from "react";
 import { Box, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
+import { QuestionsContext } from "../../store/questions-context";
+import { CountriesContext } from "../../store/countries-context";
 
 const useStyles = makeStyles({
-  option: {
+  optionBt: {
     width: "70%",
-    height: "2.5rem",
+    height: "2.6rem",
     margin: "0.5rem auto",
-  },
-  btn: {
-    width: "100%",
-    color: "#000",
-    height: "2rem",
-    marginTop: "0.5rem",
-    borderRadius: "05%",
-    backgroundColor: "transparent",
-    border: "2px solid #555",
-    cursor: "pointer",
-    transition: "0.5s",
-    "&:active": {
-      transform: "translateY(3px)",
-      boxShadow: "0 1px #000",
+    textAlign: "center",
+
+    "& button": {
+      width: "80%",
+      color: "#fff",
+      height: "2.5rem",
+      marginTop: "0.5rem",
+      borderRadius: "05%",
+      border: "2px solid #555",
+      cursor: "pointer",
+      transition: "0.5s",
+
+      "&:active": {
+        transform: "translateY(3px)",
+        boxShadow: "0 1px #000",
+      },
     },
   },
 
-  correctChoice: {
-    width: "18rem",
-    height: "2rem",
-    marginTop: "0.5rem",
-    borderRadius: "05%",
-    backgroundColor: "green",
-    border: "1px solid #555",
-    cursor: "pointer",
-    transition: "0.5s",
-    "&:active": {
-      transform: "translateY(3px)",
-      boxShadow: "0 1px #000",
+  optioncorrect: {
+    width: "70%",
+    height: "2.6rem",
+    margin: "0.5rem auto",
+    textAlign: "center",
+
+    "& button": {
+      width: "80%",
+      color: "#fff",
+      height: "2.5rem",
+      marginTop: "0.5rem",
+      borderRadius: "05%",
+      border: "2px solid #555",
+      cursor: "pointer",
+      transition: "0.5s",
+      backgroundColor: "green",
+      "&:active": {
+        transform: "translateY(3px)",
+        boxShadow: "0 1px #000",
+      },
     },
   },
 
-  uncorrectChoice: {
-    width: "18rem",
-    height: "2rem",
-    marginTop: "0.5rem",
-    borderRadius: "05%",
-    backgroundColor: "red",
-    border: "1px solid #555",
-    cursor: "pointer",
-    transition: "0.5s",
-    "&:active": {
-      transform: "translateY(3px)",
-      boxShadow: "0 1px #000",
+  optionuncorrect: {
+    width: "70%",
+    height: "2.6rem",
+    color: "#fff",
+    margin: "0.5rem auto",
+    textAlign: "center",
+
+    "& button": {
+      width: "80%",
+      color: "#fff",
+      height: "2.5rem",
+      marginTop: "0.5rem",
+      borderRadius: "05%",
+      border: "2px solid #555",
+      cursor: "pointer",
+      transition: "0.5s",
+      backgroundColor: "red",
+      "&:active": {
+        transform: "translateY(3px)",
+        boxShadow: "0 1px #000",
+      },
     },
   },
 });
 
-const QuestionOptions = ({
-  country,
-  haveAnswered,
-  parentFunction,
-  correctness,
-  setScore,
-  score,
-}) => {
+const QuestionOptions = ({ country, correctness }) => {
   const classes = useStyles();
-  const [myColor, setMyColor] = useState(classes.btn);
+  const [myColor, setMyColor] = useState(classes.optionBt);
+  const ctxQuestions = useContext(QuestionsContext);
+  const ctxCountries = useContext(CountriesContext);
 
   const changeColor = () => {
     if (correctness) {
-      setMyColor(classes.correctChoice);
-      setScore(score + 1);
+      setMyColor(classes.optioncorrect);
+      ctxCountries.setScore(ctxCountries.score + 1);
     } else {
-      setMyColor(classes.uncorrectChoice);
+      setMyColor(classes.optionuncorrect);
     }
   };
 
   useEffect(() => {
-    if (!haveAnswered) {
-      setMyColor(classes.btn);
+    if (!ctxQuestions.haveAnswered) {
+      setMyColor(classes.optionBt);
     }
-  }, [haveAnswered]);
+  }, [ctxQuestions.haveAnswered, classes.optionBt]);
 
   return (
-    <Box className={classes.option}>
+    <Box className={myColor}>
       <Button
-        className={myColor}
         variant="contained"
         onClick={() => {
-          parentFunction(correctness);
+          ctxQuestions.AnsweredQuestion(correctness);
           changeColor();
         }}
       >

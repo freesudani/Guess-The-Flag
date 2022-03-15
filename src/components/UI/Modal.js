@@ -1,17 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import classes from "./Modal.module.css";
+import makeStyles from "@mui/styles/makeStyles/makeStyles";
 
-const BackShadow = (props) => {
+const useStyles = makeStyles({
+  backshadow: {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    zIndex: "20",
+    backgroundColor: "rgba(0, 0, 0, 1)",
+  },
+
+  modal: {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    backgroundColor: "#fff",
+    border: "2px solid #000",
+    borderRadius: "10px",
+    zIndex: "30",
+  },
+});
+
+const BackShadow = () => {
+  const classes = useStyles();
   return <div className={classes.backshadow} />;
 };
 
 const ModalOverlay = (props) => {
-  return (
-    <div className={classes.modal}>
-      <div className={classes.content}>{props.children}</div>
-    </div>
-  );
+  const classes = useStyles();
+  return <div className={classes.modal}>{props.children}</div>;
 };
 
 const Modal = (props) => {
@@ -22,7 +44,7 @@ const Modal = (props) => {
         document.getElementById("finalscore")
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay> {props.children} </ModalOverlay>,
+        <ModalOverlay>{props.children}</ModalOverlay>,
         document.getElementById("finalscore")
       )}
     </>

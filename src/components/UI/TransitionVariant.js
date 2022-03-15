@@ -12,6 +12,10 @@ const transitionVariants = {
       delay: 0.8,
     },
   },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
 };
 
 export default transitionVariants;

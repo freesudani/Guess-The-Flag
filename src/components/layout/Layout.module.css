@@ -1,8 +1,0 @@
-.main {
-  padding: 2rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)),
-    url(../assets/pexels-pixabay-41949.jpg);
-  background-size: cover;
-  background-position-x: center;
-  top: 3rem;
-}
