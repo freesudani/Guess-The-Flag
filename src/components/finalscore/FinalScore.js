@@ -7,8 +7,14 @@ import { CountriesContext } from "../../store/countries-context";
 import { Fireworks } from "fireworks/lib/react";
 import transitionVariants from "../UI/TransitionVariant";
 import { motion } from "framer-motion";
+import { useTheme, useMediaQuery } from "@mui/material";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  finalscore: {
+    [theme.breakpoints.down("xs")]: {
+      width: "5rem",
+    },
+  },
   total: {
     padding: "2rem",
     display: "flex",
@@ -17,6 +23,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     fontWeight: "bold",
     fontSize: "1.5rem",
+
     "& span": {
       marginBottom: "3rem",
       textTransform: "uppercase",
@@ -40,12 +47,14 @@ const useStyles = makeStyles({
   betterluck: {
     textAlign: "center",
   },
-});
+}));
 
 const FinalScore = () => {
   const classes = useStyles();
   const ctxQuestions = useContext(QuestionsContext);
   const ctxCountries = useContext(CountriesContext);
+  const theme = useTheme();
+  const MQsm = useMediaQuery(theme.breakpoints.down("sm")); //600px
 
   let fxProps = {
     count: 2,
@@ -64,7 +73,7 @@ const FinalScore = () => {
     content = (
       <Box>
         <Fireworks {...fxProps} />
-        <Typography variant="h4" gutterBottom>
+        <Typography variant={MQsm ? "h5" : "h4"} gutterBottom>
           Congrats
         </Typography>
       </Box>
@@ -73,7 +82,7 @@ const FinalScore = () => {
   if (ctxCountries.score <= 3) {
     content = (
       <Box className={classes.betterluck}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant={MQsm ? "h5" : "h4"} gutterBottom>
           Better Luck Next Time...
         </Typography>
       </Box>
@@ -94,6 +103,7 @@ const FinalScore = () => {
 
   return (
     <Box
+      className={classes.finalscore}
       component={motion.div}
       variants={transitionVariants}
       initial="hidden"
@@ -102,16 +112,20 @@ const FinalScore = () => {
     >
       <Modal>
         <Box className={classes.total}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant={MQsm ? "h6" : "h5"} gutterBottom>
             Total Correct Answers
           </Typography>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant={MQsm ? "h6" : "h5"} gutterBottom>
             {ctxCountries.score}/5
           </Typography>
           {content}
         </Box>
         <Box className={classes.actions}>
-          <Button size="large" variant="contained" onClick={hideScoreHandler}>
+          <Button
+            size={MQsm ? "small" : "large"}
+            variant="contained"
+            onClick={hideScoreHandler}
+          >
             Close
           </Button>
         </Box>

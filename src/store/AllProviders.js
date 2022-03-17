@@ -1,17 +1,15 @@
 import React from "react";
 import CountriesProvider from "./countries-context";
 import QuestionsProvider from "./questions-context";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-const theme = createTheme();
+import StyleProvider from "./theme-context";
 
 const AllProviders = (props) => {
   return (
-    <QuestionsProvider>
-      <ThemeProvider theme={theme}>
+    <StyleProvider>
+      <QuestionsProvider>
         <CountriesProvider>{props.children}</CountriesProvider>
-      </ThemeProvider>
-    </QuestionsProvider>
+      </QuestionsProvider>
+    </StyleProvider>
   );
 };
 

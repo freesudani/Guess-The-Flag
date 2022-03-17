@@ -8,18 +8,40 @@ import { QuestionsContext } from "../../store/questions-context";
 import { CountriesContext } from "../../store/countries-context";
 import transitionVariants from "../UI/TransitionVariant";
 import { motion } from "framer-motion";
+import { useTheme, useMediaQuery } from "@mui/material";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   quiz: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
   questionflag: {
     marginLeft: "5%",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "1.5%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "0",
+      justifyContent: "center",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "-1rem",
+    },
     "& img": {
       width: "25rem",
       height: "18rem",
+      [theme.breakpoints.down("md")]: {
+        width: "23rem",
+        height: "16rem",
+      },
+      [theme.breakpoints.down("sm")]: {
+        width: "13rem",
+        height: "8rem",
+      },
     },
   },
 
@@ -31,11 +53,24 @@ const useStyles = makeStyles({
     color: "black",
     border: "5px solid #000",
     borderRadius: "10px",
+    [theme.breakpoints.down("md")]: {
+      height: "16.4rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "17rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: "0.1rem",
+      height: "13.5rem",
+    },
   },
 
   heading: {
     width: "100%",
     textAlign: "center",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "-1.5rem",
+    },
   },
 
   buttoncontainer: {
@@ -43,6 +78,15 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     width: "100%",
     marginTop: "2rem",
+    [theme.breakpoints.down("md")]: {
+      marginTop: "2.5rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "2.3rem",
+    },
   },
 
   questionbt: {
@@ -52,19 +96,31 @@ const useStyles = makeStyles({
       cursor: "pointer",
       border: "2px solid #555",
       transition: "0.5s",
+      [theme.breakpoints.down("sm")]: {
+        width: "7rem",
+        height: "2.8rem",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "6.5rem",
+        height: "2.3rem",
+      },
       "&:active": {
         transform: "translateY(3px)",
         boxShadow: "0 1px #000",
       },
     },
   },
-});
+}));
 
 const Question = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const ctxQuestions = useContext(QuestionsContext);
   const ctxCountries = useContext(CountriesContext);
+  const theme = useTheme();
+  const MQmd = useMediaQuery(theme.breakpoints.down("md")); //900px
+  const MQsm = useMediaQuery(theme.breakpoints.down("sm")); //600px
+  const MQxs = useMediaQuery(theme.breakpoints.down("xs")); //400px
 
   const exitGameHandler = () => {
     navigate("/");
@@ -89,9 +145,14 @@ const Question = () => {
         </Box>
 
         <Box className={classes.options}>
-          <Typography variant="h4" className={classes.heading}>
-            Pick A Country
-          </Typography>
+          {!MQxs ? (
+            <Typography
+              variant={MQxs ? "h6" : MQmd ? "h5" : "h4"}
+              className={classes.heading}
+            >
+              Pick A Country
+            </Typography>
+          ) : null}
 
           {ctxCountries.countries[ctxQuestions.currentQuestion].options.map(
             (country, index) => {
@@ -108,7 +169,7 @@ const Question = () => {
           <Box className={classes.buttoncontainer}>
             <Box className={classes.questionbt}>
               <Button
-                size="large"
+                size={MQsm ? "small" : MQmd ? "medium" : "large"}
                 variant="contained"
                 onClick={exitGameHandler}
               >
@@ -117,7 +178,7 @@ const Question = () => {
             </Box>
             <Box className={classes.questionbt}>
               <Button
-                size="large"
+                size={MQsm ? "small" : MQmd ? "medium" : "large"}
                 variant="contained"
                 onClick={() => {
                   ctxQuestions.setOpen(true);

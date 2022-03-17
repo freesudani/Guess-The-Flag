@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   navbar: {
     height: "6rem",
     backgroundColor: "#8a2b06",
@@ -14,11 +14,20 @@ const useStyles = makeStyles({
     alignItems: "center",
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
     zIndex: "10",
+    [theme.breakpoints.down("md")]: {
+      height: "5.5rem",
+    },
   },
 
   logo: {
     height: "5rem",
     paddingLeft: "150%",
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: "65%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: "45%",
+    },
   },
 
   navbarbt: {
@@ -27,7 +36,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingRight: "8%",
   },
-});
+}));
 
 const Navbar = () => {
   const classes = useStyles();
