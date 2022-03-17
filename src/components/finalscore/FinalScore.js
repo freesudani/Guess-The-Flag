@@ -82,6 +82,9 @@ const FinalScore = () => {
 
   const hideScoreHandler = () => {
     ctxQuestions.setOpen(false);
+    ctxCountries.setScore(0);
+    ctxQuestions.setCurrentQuestion(0);
+    ctxCountries.fetchCountries();
     if (ctxQuestions.currentQuestion >= 4) {
       ctxQuestions.setCurrentQuestion(0);
       ctxQuestions.handleClose();

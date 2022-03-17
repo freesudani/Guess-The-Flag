@@ -12,13 +12,18 @@ import transitionVariants from "../UI/TransitionVariant";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  background: theme.palette.primary.main,
   about: {
     width: "30rem",
     height: "21.9rem",
     padding: "0.5rem",
     margin: "auto",
     borderRadius: "10px",
+    background: theme.palette.primary.main,
+    [theme.breakpoints.down("md")]: {
+      height: "20rem",
+    },
   },
   startbt: {
     margin: "auto",
@@ -32,11 +37,15 @@ const useStyles = makeStyles({
       },
     },
   },
-});
+}));
 
 const About = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  const startTheGameHandler = () => {
+    navigate("/quiz");
+  };
 
   return (
     <Card
@@ -76,7 +85,7 @@ const About = () => {
           <Button
             size="large"
             variant="contained"
-            onClick={() => navigate("/quiz")}
+            onClick={startTheGameHandler}
           >
             Start
           </Button>

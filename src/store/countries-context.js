@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 
 export const CountriesContext = createContext({
   countries: [],
@@ -29,7 +29,7 @@ const CountriesProvider = (props) => {
     return array;
   };
 
-  const fetchCountries = async () => {
+  const fetchCountries = useCallback(async () => {
     setScore(0);
     let Random1 = Math.floor(Math.random() * 254);
     let Random2 = Math.floor(Math.random() * 254);
@@ -121,7 +121,7 @@ const CountriesProvider = (props) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const contextValue = {
     countries: countries,

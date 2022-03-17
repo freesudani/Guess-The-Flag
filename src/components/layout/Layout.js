@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     padding: "3rem",
     background: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)),url(${bgImage})`,
     backgroundSize: "cover",
+    overflow: "hidden",
   },
 });
 

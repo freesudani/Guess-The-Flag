@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 
   options: {
     width: "30rem",
+    height: "20rem",
     padding: "1.8rem",
     background: "#fff",
     color: "black",
@@ -118,7 +119,9 @@ const Question = () => {
               <Button
                 size="large"
                 variant="contained"
-                onClick={ctxQuestions.showFinalScore}
+                onClick={() => {
+                  ctxQuestions.setOpen(true);
+                }}
               >
                 Show Score
               </Button>

@@ -20,7 +20,6 @@ const useStyles = makeStyles({
       border: "2px solid #555",
       cursor: "pointer",
       transition: "0.5s",
-
       "&:active": {
         transform: "translateY(3px)",
         boxShadow: "0 1px #000",

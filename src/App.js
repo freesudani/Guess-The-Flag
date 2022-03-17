@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const location = useLocation();
+
   const ctxCountries = useContext(CountriesContext);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const App = () => {
       return;
     }
     ctxCountries.fetchCountries();
-  }, []);
+  }, [ctxCountries.fetchCountries]);
 
   return (
     <AnimatePresence exitBeforeEnter>

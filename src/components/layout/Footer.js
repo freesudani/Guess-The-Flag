@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   footer: {
-    width: "100%",
+    width: "100vw",
     bottom: "0",
     position: "fixed",
     height: "5rem",
@@ -22,7 +22,7 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <Box className={classes.footer}>
-      <Typography variant="h6" align="center" gutterBottom>
+      <Typography variant="h6" align="center">
         all Rights Reserved 2022 for D-Coding
       </Typography>
     </Box>

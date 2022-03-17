@@ -33,6 +33,10 @@ const Navbar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const startTheQuizHandler = () => {
+    navigate("/");
+  };
+
   return (
     <AppBar position="static">
       <Toolbar className={classes.navbar}>
@@ -40,7 +44,7 @@ const Navbar = () => {
           <img src={LogoImage} className={classes.logo} alt="logo" />
         </Box>
         <Box className={classes.navbarbt}>
-          <Button color="inherit" size="large" onClick={() => navigate("/")}>
+          <Button color="inherit" size="large" onClick={startTheQuizHandler}>
             Start Quiz
           </Button>
         </Box>
