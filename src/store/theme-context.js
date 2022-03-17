@@ -3,8 +3,12 @@ import {
   createTheme,
   StyledEngineProvider,
 } from "@mui/material/styles";
+import { deepOrange } from "@mui/material/colors";
 
 const theme = createTheme({
+  palette: {
+    primary: { main: "#8a2b06" },
+  },
   breakpoints: {
     values: {
       xs: 400,

@@ -60,10 +60,9 @@ const useStyles = makeStyles((theme) => ({
       border: "2px solid #555",
       cursor: "pointer",
       transition: "0.5s",
-      backgroundColor: "green",
+      backgroundColor: theme.palette.success.main,
       [theme.breakpoints.down("md")]: {
         marginTop: "0.3rem",
-        backgroundColor: "green",
       },
       [theme.breakpoints.down("xs")]: {
         height: "2rem",
@@ -96,10 +95,9 @@ const useStyles = makeStyles((theme) => ({
       border: "2px solid #555",
       cursor: "pointer",
       transition: "0.5s",
-      backgroundColor: "red",
+      backgroundColor: theme.palette.error.main,
       [theme.breakpoints.down("md")]: {
         marginTop: "0.3rem",
-        backgroundColor: "red",
       },
       [theme.breakpoints.down("xs")]: {
         height: "2rem",

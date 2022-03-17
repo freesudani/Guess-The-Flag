@@ -7,7 +7,7 @@ import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
 const useStyles = makeStyles((theme) => ({
   navbar: {
     height: "6rem",
-    backgroundColor: "#8a2b06",
+    backgroundColor: theme.palette.primary.main,
     color: "white",
     display: "flex",
     justifyContent: "space-between",
