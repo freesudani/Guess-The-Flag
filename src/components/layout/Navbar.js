@@ -3,6 +3,7 @@ import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import LogoImage from "../assets/9329c652c9ad420ead0e9d76a615378a (1).png";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
@@ -28,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       paddingLeft: "45%",
     },
+    [theme.breakpoints.down("mobile")]: {
+      height: "4rem",
+      paddingLeft: "10%",
+    },
   },
 
   navbarbt: {
@@ -35,12 +40,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     paddingRight: "8%",
+    [theme.breakpoints.down("mobile")]: {
+      paddingRight: "5%",
+    },
   },
 }));
 
 const Navbar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const MQmb = useMediaQuery(theme.breakpoints.down("mobile")); //260px
 
   const startTheQuizHandler = () => {
     navigate("/");
@@ -53,7 +63,11 @@ const Navbar = () => {
           <img src={LogoImage} className={classes.logo} alt="logo" />
         </Box>
         <Box className={classes.navbarbt}>
-          <Button color="inherit" size="large" onClick={startTheQuizHandler}>
+          <Button
+            color="inherit"
+            size={MQmb ? "small" : "large"}
+            onClick={startTheQuizHandler}
+          >
             Start Quiz
           </Button>
         </Box>

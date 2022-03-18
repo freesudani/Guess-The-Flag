@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+    [theme.breakpoints.down("mobile")]: {
+      width: "18rem",
+      marginLeft: "-2rem",
+    },
   },
   questionflag: {
     marginLeft: "5%",
@@ -42,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
         width: "13rem",
         height: "8rem",
       },
+      [theme.breakpoints.down("mobile")]: {
+        width: "11rem",
+        height: "6rem",
+      },
     },
   },
 
@@ -62,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       paddingTop: "0.1rem",
       height: "13.5rem",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      height: "14.5rem",
+      width: "15rem",
     },
   },
 
@@ -86,6 +98,10 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: "2.3rem",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      marginTop: "3rem",
+      justifyContent: "space-evenly",
     },
   },
 

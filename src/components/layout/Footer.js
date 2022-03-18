@@ -25,11 +25,15 @@ const useStyles = makeStyles((theme) => ({
 const Footer = () => {
   const theme = useTheme();
   const MQmd = useMediaQuery(theme.breakpoints.down("md")); //900px
+  const MQmb = useMediaQuery(theme.breakpoints.down("mobile")); //260px
 
   const classes = useStyles();
   return (
     <Box className={classes.footer}>
-      <Typography variant={MQmd ? "subtitle1" : "h6"} align="center">
+      <Typography
+        variant={MQmb ? "body2" : MQmd ? "subtitle1" : "h6"}
+        align="center"
+      >
         all Rights Reserved 2022 for D-Coding
       </Typography>
     </Box>

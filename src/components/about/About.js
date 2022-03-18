@@ -32,11 +32,20 @@ const useStyles = makeStyles((theme) => ({
       width: "22rem",
       height: "22rem",
     },
+
+    [theme.breakpoints.down("mobile")]: {
+      width: "14rem",
+      height: "22rem",
+      marginLeft: "-0.42rem",
+    },
   },
 
   instractions: {
     [theme.breakpoints.down("xs")]: {
       marginTop: "0.2rem",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      marginTop: "0rem",
     },
   },
   instraction: {
@@ -47,6 +56,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     [theme.breakpoints.down("xs")]: {
       marginTop: "2rem",
+    },
+    [theme.breakpoints.down("mobile")]: {
+      position: "absolute",
+      bottom: "0.5rem",
+      left: "8rem",
     },
     "& button": {
       cursor: "pointer",
@@ -66,6 +80,7 @@ const About = () => {
   const theme = useTheme();
   const MQmd = useMediaQuery(theme.breakpoints.down("md")); //900px
   const MQxs = useMediaQuery(theme.breakpoints.down("xs")); //400px
+  const MQmb = useMediaQuery(theme.breakpoints.down("mobile")); //260px
 
   const startTheGameHandler = () => {
     navigate("/quiz");
@@ -81,16 +96,16 @@ const About = () => {
     >
       <CardContent>
         <Typography
-          variant={MQxs ? "h6" : MQmd ? "h5" : "h4"}
+          variant={MQmb ? "subtitle1" : MQxs ? "h6" : MQmd ? "h5" : "h4"}
           align="center"
-          gutterBottom
+          gutterBottom={MQmb ? "false" : "true"}
         >
           World Flag Quiz Test
         </Typography>
         <Typography
-          variant={MQxs ? "subtitle1" : MQmd ? "h6" : "h5"}
+          variant={MQmb ? "subtitle2" : MQxs ? "subtitle1" : MQmd ? "h6" : "h5"}
           align="center"
-          gutterBottom
+          gutterBottom={MQmb ? "false" : "true"}
         >
           Please Read Below Instructions
         </Typography>
@@ -98,7 +113,7 @@ const About = () => {
           <Typography
             variant={MQxs ? "caption" : MQmd ? "body2" : "body1"}
             align="left"
-            gutterBottom
+            gutterBottom={MQmb ? "false" : "true"}
             className={classes.instraction}
           >
             1. You will presented with 5 different flags
@@ -106,7 +121,7 @@ const About = () => {
           <Typography
             variant={MQxs ? "caption" : MQmd ? "body2" : "body1"}
             align="left"
-            gutterBottom
+            gutterBottom={MQmb ? "false" : "true"}
             className={classes.instraction}
           >
             2. Please choose the correct flag out of the options
@@ -114,7 +129,7 @@ const About = () => {
           <Typography
             variant={MQxs ? "caption" : MQmd ? "body2" : "body1"}
             align="left"
-            gutterBottom
+            gutterBottom={MQmb ? "false" : "true"}
             className={classes.instraction}
           >
             3. You can Exit the Quize at any stage
@@ -122,7 +137,7 @@ const About = () => {
           <Typography
             variant={MQxs ? "caption" : MQmd ? "body2" : "body1"}
             align="left"
-            gutterBottom
+            gutterBottom={MQmb ? "false" : "true"}
             className={classes.instraction}
           >
             4. Score above 4/5 and you get excellent grade.
@@ -130,7 +145,7 @@ const About = () => {
           <Typography
             variant={MQxs ? "caption" : MQmd ? "body2" : "body1"}
             align="left"
-            gutterBottom
+            gutterBottom={MQmb ? "false" : "true"}
             className={classes.instraction}
           >
             5. Score below 4/5 and you get poor grade.
@@ -140,7 +155,7 @@ const About = () => {
       <CardActions>
         <Box className={classes.startbt}>
           <Button
-            size={MQmd ? "medium" : "large"}
+            size={MQmb ? "small" : MQmd ? "medium" : "large"}
             variant="contained"
             onClick={startTheGameHandler}
           >
