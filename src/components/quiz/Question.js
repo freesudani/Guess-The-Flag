@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+
+    [theme.breakpoints.down("galaxys9")]: {
+      marginTop: "6rem",
+    },
+
     [theme.breakpoints.down("mobile")]: {
       width: "18rem",
       marginLeft: "-2rem",

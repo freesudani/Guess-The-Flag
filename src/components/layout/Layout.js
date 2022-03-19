@@ -7,6 +7,7 @@ import bgImage from "../assets/pexels-pixabay-41949.jpg";
 const useStyles = makeStyles((theme) => ({
   main: {
     padding: "3rem",
+    height: "100%",
     background: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)),url(${bgImage})`,
     backgroundSize: "cover",
     overflow: "hidden",
@@ -15,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       padding: "1.5rem",
+    },
+    [theme.breakpoints.down("galaxys9")]: {
+      height: "35rem",
     },
   },
 }));

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import makeStyles from "@mui/styles/makeStyles/makeStyles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   backshadow: {
     position: "fixed",
     top: "0",
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     zIndex: "20",
-    backgroundColor: "rgba(0, 0, 0, 1)",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
 
   modal: {
@@ -23,8 +23,11 @@ const useStyles = makeStyles({
     border: "2px solid #000",
     borderRadius: "10px",
     zIndex: "30",
+    [theme.breakpoints.down("galaxys9")]: {
+      width: 350,
+    },
   },
-});
+}));
 
 const BackShadow = () => {
   const classes = useStyles();

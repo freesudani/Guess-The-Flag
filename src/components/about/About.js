@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
       height: "22rem",
     },
 
+    [theme.breakpoints.down("galaxys9")]: {
+      marginTop: "6.5rem",
+      marginLeft: "-1.3rem",
+      height: "20rem",
+    },
+
     [theme.breakpoints.down("mobile")]: {
       width: "14rem",
       height: "22rem",
